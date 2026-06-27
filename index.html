@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FinanceOrbit</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<div class="glass-card">
+
+
+<h2>🚀 FinanceOrbit</h2>
+
+
+<p class="subtitle">
+
+Professional Loan Calculator with Approximate Live Currency Conversion
+
+</p>
+
+
+
+
+<div class="input-group">
+
+
+<label>Select Currency</label>
+
+
+<select id="currency">
+
+
+<option value="ARS">🇦🇷 ARS - Argentine Peso</option>
+
+<option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+
+<option value="BOB">🇧🇴 BOB - Bolivia Boliviano</option>
+
+<option value="BRL">🇧🇷 BRL - Brazilian Real</option>
+
+<option value="BBD">🇧🇧 BBD - Barbados Dollar</option>
+
+<option value="BSD">🇧🇸 BSD - Bahamas Dollar</option>
+
+<option value="BZD">🇧🇿 BZD - Belize Dollar</option>
+
+<option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+
+<option value="CLP">🇨🇱 CLP - Chilean Peso</option>
+
+<option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+
+<option value="COP">🇨🇴 COP - Colombian Peso</option>
+
+<option value="CRC">🇨🇷 CRC - Costa Rica Colón</option>
+
+<option value="DOP">🇩🇴 DOP - Dominican Peso</option>
+
+<option value="EUR">🇪🇺 EUR - Euro</option>
+
+<option value="GBP">🇬🇧 GBP - British Pound</option>
+
+<option value="GYD">🇬🇾 GYD - Guyana Dollar</option>
+
+<option value="GTQ">🇬🇹 GTQ - Guatemala Quetzal</option>
+
+<option value="HTG">🇭🇹 HTG - Haiti Gourde</option>
+
+<option value="HNL">🇭🇳 HNL - Honduras Lempira</option>
+
+<option value="JMD">🇯🇲 JMD - Jamaican Dollar</option>
+
+<option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+
+<option value="MXN">🇲🇽 MXN - Mexican Peso</option>
+
+<option value="NIO">🇳🇮 NIO - Nicaragua Córdoba</option>
+
+<option value="PAB">🇵🇦 PAB - Panama Balboa</option>
+
+<option value="PEN">🇵🇪 PEN - Peruvian Sol</option>
+
+<option value="PYG">🇵🇾 PYG - Paraguay Guarani</option>
+
+<option value="SRD">🇸🇷 SRD - Suriname Dollar</option>
+
+<option value="TTD">🇹🇹 TTD - Trinidad Dollar</option>
+
+<option value="USD">🇺🇸 USD - US Dollar</option>
+
+<option value="UYU">🇺🇾 UYU - Uruguay Peso</option>
+
+<option value="VES">🇻🇪 VES - Venezuela Bolívar</option>
+
+<option value="XCD">🏝️ XCD - East Caribbean Dollar</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="input-group">
+
+
+<label>Loan Amount</label>
+
+
+<input 
+
+type="number"
+
+id="amount"
+
+placeholder="Example: 5000">
+
+
+</div>
+
+
+
+
+
+
+<div class="row">
+
+
+<div class="input-group">
+
+
+<label>Years</label>
+
+
+<input
+
+type="number"
+
+id="years"
+
+placeholder="0">
+
+
+</div>
+
+
+
+
+
+<div class="input-group">
+
+
+<label>Months</label>
+
+
+<input
+
+type="number"
+
+id="months"
+
+placeholder="60">
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="input-group">
+
+
+<label>Interest Rate (%)</label>
+
+
+<input
+
+type="number"
+
+id="rate"
+
+step="0.01"
+
+placeholder="Example: 7.5">
+
+
+</div>
+
+
+
+
+
+
+
+<button onclick="calculate()">
+
+Calculate Loan
+
+</button>
+
+
+
+
+
+
+
+<div id="exchange-rate">
+
+
+Approximate Exchange Rate:
+
+<span id="rate-value">
+
+Loading...
+
+</span>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="results">
+
+
+
+
+
+<div class="result-item">
+
+
+<span>Monthly Payment</span>
+
+
+<div class="currency-box">
+
+
+<div id="monthly-usd">
+
+💵 $0.00
+
+</div>
+
+
+<div id="monthly-mxn">
+
+🌎 $0.00
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="result-item">
+
+
+<span>Monthly Interest</span>
+
+
+<div class="currency-box">
+
+
+<div id="interest-usd">
+
+💵 $0.00
+
+</div>
+
+
+<div id="interest-mxn">
+
+🌎 $0.00
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="result-item">
+
+
+<span>Total Interest</span>
+
+
+<div class="currency-box">
+
+
+<div id="total-interest-usd">
+
+💵 $0.00
+
+</div>
+
+
+<div id="total-interest-mxn">
+
+🌎 $0.00
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="result-item">
+
+
+<span>Total Amount</span>
+
+
+<div class="currency-box">
+
+
+<div id="total-usd">
+
+💵 $0.00
+
+</div>
+
+
+<div id="total-mxn">
+
+🌎 $0.00
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+
+</html>
